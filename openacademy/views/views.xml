@@ -38,10 +38,10 @@
         <field name="name">course.search</field>
         <field name="model">openacademy.course</field>
         <field name="arch" type="xml">
-            <tree string="Course Search">
+            <search string="Course Search">
                 <field name="name" string="Name Search"/>
                 <field name="description"/>
-            </tree>
+            </search>
         </field>
     </record>
 
