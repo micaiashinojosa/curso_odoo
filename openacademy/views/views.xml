@@ -119,7 +119,7 @@
                 <field name="name"/>
                 <field name="start_date"/>
                 <field name="duration" invisible="1"/>
-                <filed name="end_date"/>
+                <field name="end_date"/>
                 <field name="seats"/>
                 <field name="instructor_id"/>
                 <field name="course_id"/>
@@ -149,7 +149,7 @@
         </field>
     </record>
 
-    <record model="r.ui.view" id="session_kanban_view">
+    <record model="ir.ui.view" id="session_kanban_view">
 		<field name="name">session.kanban</field>
 		<field name="model">openacademy.session</field>
 		<field name="arch" type="xml">
@@ -164,7 +164,6 @@
 							<div class="oe_dropdown_kanban">
 								<!-- dropdown menu -->
 								<div class="oe_dropdown_toggle">
-									<i class="fa fa-bars fa-lg"/>
 									<ul class="oe_dropdown_menu">
 										<li>
 											<a type="delete">Delete</a>
@@ -196,8 +195,8 @@
 			</kanban>
 		</field>
 	</record>
-
-    <record model="ir.ui.view" id="session_gantt_view">
+<!--
+	    <record model="ir.ui.view" id="session_gantt_view">
 		<field name="name">session.gantt</field>
 		<field name="model">openacademy.session</field>
 		<field name="arch" type="xml">
@@ -208,12 +207,12 @@
 			</gantt>
 		</field>
 	</record>
-
+-->
     <record model="ir.actions.act_window" id="session_list_action">
       <field name="name">Sessions</field>
       <field name="res_model">openacademy.session</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form,calendar,kanban,gantt</field>
+      <field name="view_mode">tree,form,calendar,kanban</field>
     </record>
 
     <menuitem id="session_menu" name="Sessions"
