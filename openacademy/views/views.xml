@@ -212,7 +212,7 @@
       <field name="name">Sessions</field>
       <field name="res_model">openacademy.session</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form,calendar,kanban</field>
+      <field name="view_mode">tree,form,calendar,graph,kanban</field>
     </record>
 
     <menuitem id="session_menu" name="Sessions"
