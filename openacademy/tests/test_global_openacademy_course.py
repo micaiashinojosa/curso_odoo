@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 
+from psycopg2 import IntegrityError
+
 from odoo.tests.common import TransactionCase
 
-class GloabalTestOpenAcademyCourse(TransactionCase):
+class GlobalTestOpenAcademyCourse(TransactionCase):
     '''
     Global test to openacademy course model.
     Test create course and trigger constraints.
@@ -17,9 +19,9 @@ class GloabalTestOpenAcademyCourse(TransactionCase):
     # Method of class that don't is test
     def create_course(self, course_name, course_description, course_responsible_id):
         course_id = self.course.create({
-                'name' = course_name,
-                'description' = course_description,
-                'responsible_id' = course_responsible_id,
+            'name' : course_name,
+            'description' : course_description,
+            'responsible_id' : course_responsible_id,
             })
         return course_id
 
@@ -30,7 +32,7 @@ class GloabalTestOpenAcademyCourse(TransactionCase):
         To test constraint of name different to description.
         '''
         with self.assertRaisesRegexp(
-                except_class,
+                IntegrityError,
                 'msg de error'
                 ):
             self.create_course('test_name','test_description',None)
