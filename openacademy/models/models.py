@@ -30,6 +30,7 @@ class Course(models.Model):
     ]
 
     def copy(self, default=None):
+        print("estoy pasandi por la funcion heredada de copy en cursos")
         if default is None:
             default = {}
         copied_count = self.search_count([
