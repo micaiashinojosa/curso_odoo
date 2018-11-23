@@ -44,7 +44,7 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
                 ' check constraint "openacademy_course_name_description_check"'
                 ):
             # Create a course with same and description to raise error.
-            self.create_course('test_name','test_description',None)
+            self.create_course('test_name','test_name',None)
 
     @mute_logger('odoo.sql_db')
     def test_20_two_courses_same_name(self):
