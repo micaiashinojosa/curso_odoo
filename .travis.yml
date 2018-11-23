@@ -9,7 +9,7 @@ addons:
   postgresql: "9.5"
   apt:
     packages:
-      - expect-dev  # provides unbuffer utility
+		- expect-dev  # provides unbuffer utility
 
 
 env:
@@ -30,5 +30,5 @@ script:
   - travis_run_tests
 
 after_success:
-- travis_after_tests_success
+	- travis_after_tests_success
 
