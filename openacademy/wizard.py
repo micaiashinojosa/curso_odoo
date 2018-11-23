@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+
 
 class Wizard(models.TransientModel):
     _name = 'openacademy.wizard'
@@ -8,11 +8,11 @@ class Wizard(models.TransientModel):
     def _default_sessions(self):
         session_obj = self.env['openacademy.session']
         session_ids = self._context.get('active_ids')
-        session_records =session_obj.browse(session_ids)
+        session_records = session_obj.browse(session_ids)
         return session_records
 
     session_ids = fields.Many2many('openacademy.session',
-        required=True, default=_default_sessions)
+        required = True, default =_default_sessions)
     attendee_ids = fields.Many2many('res.partner')
 
     @api.multi
@@ -20,4 +20,3 @@ class Wizard(models.TransientModel):
         for session in self.session_ids:
             session.attendee_ids |= self.attendee_ids
         return {}
-
