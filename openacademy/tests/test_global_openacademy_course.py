@@ -20,13 +20,14 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
         self.course = self.env['openacademy.course']
 
     # Method of class that don't is test
-    def create_course(self, course_name, course_description,
-        course_responsible_id):
+    def create_course(
+            self, course_name, course_description, course_responsible_id):
         # create a course with parameters received
-        course_id = self.course.create({
-            'name': course_name,
-            'description': course_description,
-            'responsible_id': course_responsible_id,
+        course_id = self.course.create(
+            {
+                'name': course_name,
+                'description': course_description,
+                'responsible_id': course_responsible_id,
             })
         return course_id
 
@@ -61,8 +62,8 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
                 'duplicate key value violates unique constraint'
                 ' "openacademy_course_name_unique"'
                 ):
-            new_id2 = self.create_course('test_name1', 'test_description',
-                None)
+            new_id2 = self.create_course(
+                'test_name1', 'test_description', None)
             print("new_id2", new_id2)
 
     def test_15_duplicate_course(self):

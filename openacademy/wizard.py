@@ -12,7 +12,7 @@ class Wizard(models.TransientModel):
         return session_records
 
     session_ids = fields.Many2many('openacademy.session',
-        required=True, default=_default_sessions)
+                                   required=True, default=_default_sessions)
     attendee_ids = fields.Many2many('res.partner')
 
     @api.multi

@@ -24,10 +24,11 @@ class Course(models.Model):
         ('name_description_check',
             'CHECK( name != description )',
             "The title of the course should not be the description"),
-        ('name_unique',
+        (
+            'name_unique',
             'UNIQUE(name)',
             "The course title must be unique",
-            ),
+        ),
     ]
 
     def copy(self, default=None):
@@ -53,17 +54,22 @@ class Session(models.Model):
     datetime_test = fields.Datetime(default=fields.Datetime.now)
     duration = fields.Float(digits=(6, 2), help="Duration in days")
     seats = fields.Integer(string="Number of seats")
-    instructor_id = fields.Many2one('res.partner', string="Instructor",
-        domain=['|', ('instructor', '=', True),
+    instructor_id = fields.Many2one(
+        'res.partner', string="Instructor",
+        domain=[
+            '|', ('instructor', '=', True),
             ('category_id.name', 'ilike', 'Teacher')])
-    course_id = fields.Many2one('openacademy.course', ondelete='cascade',
+    course_id = fields.Many2one(
+        'openacademy.course', ondelete='cascade',
         string="Course", required=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
     taken_seats = fields.Float(_compute='_taken_seats', store=True)
     active = fields.Boolean(default=True)
-    end_date = fields.Date(store=True, _compute='_get_end_date',
+    end_date = fields.Date(
+        store=True, _compute='_get_end_date',
         _inverse='_set_end_date')
-    attendees_count = fields.Integer(_compute='_get_attendees_count',
+    attendees_count = fields.Integer(
+        _compute='_get_attendees_count',
         store=True)
     color = fields.Float()
     hours = fields.Float(
@@ -104,8 +110,8 @@ class Session(models.Model):
             if not record.seats:
                 record.taken_seats = 0
             else:
-                record.taken_seats= 100.0 * len(record.attendee_ids)
-                record.taken_seats= record.taken_seats / record.seats
+                record.taken_seats = 100.0 * len(record.attendee_ids)
+                record.taken_seats = record.taken_seats / record.seats
 
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
