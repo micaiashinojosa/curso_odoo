@@ -22,13 +22,13 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
     # Method of class that don't is test
     def create_course(self, course_name, course_description,
         course_responsible_id):
-            # create a course with parameters received
-            course_id = self.course.create({
-                'name': course_name,
-                'description': course_description,
-                'responsible_id': course_responsible_id,
-                })
-            return course_id
+        # create a course with parameters received
+        course_id = self.course.create({
+            'name': course_name,
+            'description': course_description,
+            'responsible_id': course_responsible_id,
+            })
+        return course_id
 
     # Method of test starts with 'def test_*(self):'
 
@@ -36,7 +36,7 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
     @mute_logger('odoo.sql_db')
     def test_10_same_name_description(self):
         '''
-        YYY Test create a course with same name and description.
+        Test create a course with same name and description.
         To test constraint of name different to description.
         '''
         # Error raised expected with message expected
@@ -51,14 +51,16 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
     @mute_logger('odoo.sql_db')
     def test_20_two_courses_same_name(self):
         '''
-        XXX Test to create two courses with same name.
+        Test to create two courses with same name.
         To raise constraint of unique name
         '''
         new_id = self.create_course('test_name1', 'test_description', None)
         print("new_id", new_id)
-        with self.assertRaisesRegexp(IntegrityError,
-            'duplicate key value violates unique constraint'
-                ' "openacademy_course_name_unique"'):
+        with self.assertRaisesRegexp(
+                IntegrityError,
+                'duplicate key value violates unique constraint'
+                ' "openacademy_course_name_unique"'
+                ):
             new_id2 = self.create_course('test_name1', 'test_description',
                 None)
             print("new_id2", new_id2)
