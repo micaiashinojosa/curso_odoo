@@ -30,6 +30,7 @@ class Course(models.Model):
             ),
     ]
 
+    @api.one
     def copy(self, default=None):
         print("estoy pasandi por la funcion heredada de copy en cursos")
         if default is None:
@@ -92,11 +93,11 @@ class Session(models.Model):
             record.end_date = record.start_date + timedelta(
                 days=record.duration, seconds=-1)
 
-    def _set_end_date(self):
-        for record in self.filtered('start_date'):
+    # def _set_end_date(self):
+    #    for record in self.filtered('start_date'):
             # start_date =fields.Date.from_string(record.start_date)
             # end_date = fields.Date.from_string(record.end_date)
-            (record.end_date - record.start_date).days + 1
+            # (record.end_date - record.start_date).days + 1
 
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
