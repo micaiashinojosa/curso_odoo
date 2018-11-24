@@ -7,9 +7,9 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Sessions">
-                <group>
-                    <field name="instructor"/>
-                    <field name="session_ids"/>
+                    <group>
+                        <field name="instructor"/>
+                        <field name="session_ids"/>
                     </group>
                 </page>
             </notebook>
