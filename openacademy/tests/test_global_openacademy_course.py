@@ -64,7 +64,7 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
                 ):
             new_id2 = self.create_course(
                 'test_name1', 'test_description', None)
-            print("new_id2", new_id2)
+            print("new_id2 %s", new_id2)
 
     def test_15_duplicate_course(self):
         '''
@@ -72,4 +72,4 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
         '''
         course = self.env.ref('openacademy.course0')
         course_id = course.copy()
-        print("course_id", course_id)
+        print("course_id %s", course_id)
